@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeTabs'>
-            <Stack.Screen name='login' component={LoginScreen} options={{headerTitleAlign: 'center', title: 'Login'}}/>
+        <Stack.Navigator initialRouteName='login'>
+            <Stack.Screen name='login' component={LoginScreen} options={{headerShown: false}}/>
             <Stack.Screen name='HomeTabs' component={BottomTabNavigator} options={{headerShown: false}}/>
         </Stack.Navigator>
     </NavigationContainer>
