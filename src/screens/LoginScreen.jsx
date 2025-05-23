@@ -18,7 +18,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 
 const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -28,7 +28,7 @@ const LoginScreen = ({navigation}) => {
       keyboardVerticalOffset={keyboardVerticalOffset}
     >
       <SafeAreaView style={styles.mainContainer}>
-        <StatusBar style="light" />
+        <StatusBar style="auto" />
         <View style={styles.headerTextContainer}>
           <Text
             style={{
@@ -72,6 +72,18 @@ const LoginScreen = ({navigation}) => {
               Login
             </Text>
           </Pressable>
+          <View style={styles.toSignup}>
+            <Text style={{
+              marginRight: 10,
+              fontSize: 18
+            }}>Dont have an account?</Text>
+            <Pressable onPress={() => navigation.navigate('signup')}>
+              <Text style={{
+              fontWeight: 'bold',
+              fontSize: 18
+            }}>Signup</Text>
+            </Pressable>
+          </View>
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
@@ -114,5 +126,10 @@ const styles = StyleSheet.create({
   headerTextContainer: {
     flex: 1,
     marginLeft: wp("5%"),
+  },
+  toSignup: {
+    flexDirection: "row",
+    padding: 10,
+    justifyContent: 'center'
   },
 });
