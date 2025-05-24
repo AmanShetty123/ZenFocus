@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingVertical: hp("0.8%"),
     paddingHorizontal: wp("4%"),
-    backgroundColor: "red",
+    backgroundColor: "#FF3B30",
   },
   joinButtonText: {
     fontWeight: "bold",
