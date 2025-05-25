@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import BottomTabNavigator from './BottomTabNavigator';
 import SignupScreen from '../screens/SignupScreen';
 import CreateRoom from '../screens/CreateRoom';
+import PomodoroScreen from '../screens/PomodoroScreen';
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
@@ -17,6 +18,7 @@ const AppNavigator = () => {
             <Stack.Screen name='HomeTabs' component={BottomTabNavigator} options={{headerShown: false}}/>
             <Stack.Screen name='signup' component={SignupScreen} options={{headerShown: false}} />
             <Stack.Screen name='createRoom' component={CreateRoom} options={{headerShown: false}} />
+            <Stack.Screen name='pomodoroRoom' component={PomodoroScreen} options={{headerShown: false}} />
         </Stack.Navigator>
     </NavigationContainer>
   )
