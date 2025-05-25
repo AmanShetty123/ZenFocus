@@ -13,7 +13,7 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CreateRoom = () => {
+const CreateRoom = ({ navigation }) => {
   const [roomName, setRoomName] = useState("");
   const [numberOfMembers, setNumberOfMembers] = useState("");
   const [numberOfPomodoro, setNumberOfPomodoro] = useState("");
@@ -30,12 +30,18 @@ const CreateRoom = () => {
       pomodoroLength,
       breakLength
     );
+    navigation.navigate("pomodoroRoom", {
+      roomName,
+      numberOfPomodoro,
+      pomodoroLength,
+      breakLength,
+    });
   };
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: "#fff",
     },
     keyboardAvoidingView: {
       flex: 1,
@@ -43,14 +49,14 @@ const CreateRoom = () => {
     innerContainer: {
       flex: 1,
       paddingHorizontal: width * 0.05,
-      justifyContent: 'center',
+      justifyContent: "center",
     },
     roomDetailsContainer: {
       borderWidth: 2,
       borderRadius: 30,
       padding: width * 0.04,
-      borderColor: '#ddd',
-      backgroundColor: '#fff',
+      borderColor: "#ddd",
+      backgroundColor: "#fff",
     },
     formContainer: {
       paddingHorizontal: width * 0.02,
@@ -65,13 +71,13 @@ const CreateRoom = () => {
     },
     input: {
       borderWidth: 1,
-      borderColor: '#ddd',
+      borderColor: "#ddd",
       padding: height * 0.015,
       borderRadius: 15,
       width: "100%",
       minHeight: height * 0.055,
       fontSize: width * 0.035 > 14 ? 14 : width * 0.035,
-      backgroundColor: '#fff',
+      backgroundColor: "#fff",
     },
     buttonContainer: {
       alignItems: "center",
@@ -79,7 +85,7 @@ const CreateRoom = () => {
     },
     createRoomButton: {
       borderWidth: 2,
-      borderColor: 'green',
+      borderColor: "green",
       width: width * 0.4 > 160 ? 160 : width * 0.4,
       height: height * 0.06,
       justifyContent: "center",
@@ -165,7 +171,10 @@ const CreateRoom = () => {
               </View>
 
               <View style={styles.buttonContainer}>
-                <Pressable style={styles.createRoomButton} onPress={onCreateRoom}>
+                <Pressable
+                  style={styles.createRoomButton}
+                  onPress={onCreateRoom}
+                >
                   <Text style={styles.createRoomButtonText}>Create Room</Text>
                 </Pressable>
               </View>
