@@ -1,12 +1,31 @@
-import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
-const ProfileScreen = () => {
+import { account } from "../lib/appWrite";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../slices/authSlice";
+const ProfileScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    try {
+      await account.deleteSession("current");
+      dispatch(logoutUser());
+      navigation.replace("login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SafeAreaView style={styles.mainContainer} edges={["top"]}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -28,9 +47,9 @@ const ProfileScreen = () => {
             <Text style={styles.buttonContainerText}>Total focus time</Text>
             <Text style={styles.buttonContainerText}>6 hrs</Text>
           </View>
-          <View style={styles.logoutButton}>
-            <Text style={styles.logoutButtonText}>Logout</Text>
-          </View>
+          <Pressable style={styles.logoutButton} onPress={handleLogout}>
+              <Text style={styles.logoutButtonText}>Logout</Text>
+          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>
