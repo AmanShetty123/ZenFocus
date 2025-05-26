@@ -16,11 +16,17 @@ import {
 } from "react-native-responsive-screen";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import { account } from "../lib/appWrite";
+import {login} from '../auth/auth'
+import { useDispatch } from "react-redux";
+
 
 const keyboardVerticalOffset = Platform.OS === "ios" ? 40 : 0;
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -63,7 +69,12 @@ const LoginScreen = ({ navigation }) => {
             secureTextEntry
             style={styles.input}
           />
-          <Pressable style={styles.loginButton}>
+          <Pressable
+            style={styles.loginButton}
+            onPress={() =>
+              login(username, password, navigation, dispatch)
+            }
+          >
             <Text
               style={{
                 color: "white",
@@ -73,15 +84,23 @@ const LoginScreen = ({ navigation }) => {
             </Text>
           </Pressable>
           <View style={styles.toSignup}>
-            <Text style={{
-              marginRight: 10,
-              fontSize: 18
-            }}>Dont have an account?</Text>
-            <Pressable onPress={() => navigation.navigate('signup')}>
-              <Text style={{
-              fontWeight: 'bold',
-              fontSize: 18
-            }}>Signup</Text>
+            <Text
+              style={{
+                marginRight: 10,
+                fontSize: 18,
+              }}
+            >
+              Dont have an account?
+            </Text>
+            <Pressable onPress={() => navigation.navigate("signup")}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 18,
+                }}
+              >
+                Signup
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -130,6 +149,6 @@ const styles = StyleSheet.create({
   toSignup: {
     flexDirection: "row",
     padding: 10,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
 });
